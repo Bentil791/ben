@@ -1,0 +1,47 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+
+using namespace std;
+
+// Function to display troubleshooting steps
+void displayTroubleshooting(const string& code, const unordered_map<string, string>& errorCodes) {
+    if (errorCodes.find(code) != errorCodes.end()) {
+        cout << "Error Code: " << code << endl;
+        cout << "Troubleshooting: " << errorCodes.at(code) << endl;
+    } else {
+        cout << "Error Code " << code << " not recognized. Please consult the user manual." << endl;
+    }
+}
+
+int main() {
+    // Define error codes and troubleshooting steps
+    unordered_map<string, string> errorCodes = {
+        {"F1", "Control Board Failure: Reset the stove or replace the control board."},
+        {"F2", "Overheating: Check and replace the oven temperature sensor."},
+        {"F3", "Sensor Circuit Error: Inspect and replace the temperature sensor."},
+        {"F5", "Door Latch Failure: Check the latch mechanism and replace if faulty."},
+        {"E1", "Keypad Error: Clean or replace the keypad or touch panel."},
+        {"E0", "Ignition Failure: Clean the burner or replace the igniter."},
+        {"E2", "Gas Leak: Turn off gas and contact a technician immediately."},
+        {"E3", "Thermocouple Malfunction: Replace the thermocouple if damaged."}
+    };
+
+    cout << "Stove Error Code Troubleshooter" << endl;
+    cout << "--------------------------------" << endl;
+
+    string code;
+    while (true) {
+        cout << "\nEnter the error code (or type 'exit' to quit): ";
+        cin >> code;
+
+        if (code == "exit") {
+            cout << "Exiting the troubleshooter. Stay safe!" << endl;
+            break;
+        }
+
+        displayTroubleshooting(code, errorCodes);
+    }
+
+    return 0;
+}
